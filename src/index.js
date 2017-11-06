@@ -1,23 +1,50 @@
-import React from 'react';
+import React ,{Component} from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware } from 'redux';
+import YTSearch from 'youtube-api-search'
+import _ from 'lodash'
 
-// import App from './components/app';
-// import reducers from './reducers';
+import SearchBar from './components/Search_bar'
+import VideoList from './components/Video_list'
+import VideoDetail from './components/Video_detail'
 
-// const createStoreWithMiddleware = applyMiddleware()(createStore);
+const API_KEY = 'AIzaSyA5hRzVsrfhA_P59Y0rEu610Nt2k-chEtg';
 
-// ReactDOM.render(
-//   <Provider store={createStoreWithMiddleware(reducers)}>
-//     <App />
-//   </Provider>
-//   , document.querySelector('.container'));
 
-const API_KEY = ''
+class App extends Component{
+  constructor(){
+    super()
+    this.state={
+      videos:[],
+      selectVideo:null
+    }
+    this.videoSearch('cat')
+  }
 
-const App = () => {
-  return <div>Hi</div>
+  videoSearch(term) {
+    YTSearch({key:API_KEY, term: term },(videos) => {
+      this.setState({
+        videos:videos,
+        selectVideo:videos[0]
+      })
+      // key and state are the same, {{videos:videos}} => ({videos})
+    })
+
+  }
+  render(){
+    const videoSearch = _.debounce((term) => {this.videoSearch(term)},300)
+    return(
+      <div>
+       <SearchBar onSearchTermChange={videoSearch}/>
+         <VideoDetail video={this.state.selectVideo}/>
+          <VideoList
+         onVideoSelect = {selectVideo => this.setState({selectVideo})}
+         videos ={this.state.videos}
+         />
+     </div>
+
+    )
+  }
+
 }
 
 ReactDOM.render(<App/>, document.querySelector('.container'))
