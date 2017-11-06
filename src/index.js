@@ -14,8 +14,10 @@ import ReactDOM from 'react-dom';
 //   </Provider>
 //   , document.querySelector('.container'));
 
-const App = function(){
+const API_KEY = ''
+
+const App = () => {
   return <div>Hi</div>
 }
 
-ReactDOM.render(<App/>)
+ReactDOM.render(<App/>, document.querySelector('.container'))
