@@ -14,8 +14,10 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div>
+      <div className='search-container'>
+      <i className="fa fa-youtube-square fa-5x"></i>
       <input className='search-bar '
+      placeholder ='Search your video'
       value={this.state.term}
       onChange={event => this.onInputChange(event.target.value)}/>
       </div>
