@@ -6,6 +6,7 @@ import _ from 'lodash'
 import SearchBar from './components/Search_bar'
 import VideoList from './components/Video_list'
 import VideoDetail from './components/Video_detail'
+import Footer from './components/Footer'
 
 const API_KEY = 'AIzaSyA5hRzVsrfhA_P59Y0rEu610Nt2k-chEtg';
 
@@ -40,6 +41,7 @@ class App extends Component{
          onVideoSelect = {selectVideo => this.setState({selectVideo})}
          videos ={this.state.videos}
          />
+       <Footer/>
      </div>
 
     )

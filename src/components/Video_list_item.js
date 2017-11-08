@@ -5,6 +5,7 @@ console.log(video)
 const imageUrl = video.snippet.thumbnails.default.url
 const title = video.snippet.title
     return (
+      <div className='reverse'>
       <li onClick={()=>onVideoSelect(video)} className='list-group-item'>
       <div className='video-list media'>
           <div className='media-left'>
@@ -15,6 +16,7 @@ const title = video.snippet.title
          </div>
       </div>
       </li>
+    </div>
     );
   }
 
